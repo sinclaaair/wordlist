@@ -4,15 +4,17 @@
   "description": "Crossword answers and clues by regex",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "Sinclair Kinch",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "mongoose": "^5.4.19"
+  },
+  "engines": {
+    "node": "11.5.0"
   }
 }

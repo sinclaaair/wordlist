@@ -1,20 +1,21 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const wordRoutes = express.Router();
-const PORT = 4000;
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const mongoose = require('mongoose')
+const wordRoutes = express.Router()
+const PORT = process.env.PORT || 4000
 
-let Word = require('./word.model');
+const Word = require('./word.model')
+require('dotenv').config()
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors())
+app.use(bodyParser.json())
 
-mongoose.connect('mongodb://127.0.0.1:27017/words', { useNewUrlParser: true });
-const connection = mongoose.connection;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/words', { useNewUrlParser: true })
+const connection = mongoose.connection
 connection.once('open', function() {
-    console.log("MongoDB database connection established successfully");
+    console.log("MongoDB database connection established successfully")
 })
 
 // find by regex
@@ -104,7 +105,7 @@ wordRoutes.route('/').get(function(req, res) {
 })
 
 
-app.use('/words', wordRoutes);
+app.use('/words', wordRoutes)
 app.listen(PORT, function() {
-    console.log("Server is running on Port: " + PORT);
-});
+    console.log("Server is running on Port: " + PORT)
+})
